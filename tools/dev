@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+cd web_src && node node_modules/webpack-cli/bin/cli.js --mode development --watch &
+go run cmd/newsletter/main.go &
+
+wait

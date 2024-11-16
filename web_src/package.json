@@ -1,0 +1,21 @@
+{
+	"name": "web_src",
+	"scripts": {
+		"build": "webpack --mode production",
+		"dev": "webpack --mode development --watch"
+	},
+	"devDependencies": {
+		"css-loader": "^7.1.2",
+		"css-minimizer-webpack-plugin": "^7.0.0",
+		"glob": "^11.0.0",
+		"mini-css-extract-plugin": "^2.9.2",
+		"sass": "^1.80.7",
+		"sass-loader": "^16.0.3",
+		"webpack": "^5.96.1",
+		"webpack-cli": "^5.1.4",
+		"webpack-remove-empty-scripts": "^1.0.4"
+	},
+	"dependencies": {
+		"normalize.css": "^8.0.1"
+	}
+}
