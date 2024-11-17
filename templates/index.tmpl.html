@@ -1,2 +1,24 @@
 {{ template "base/head.tmpl.html" . }}
+<div class="navbar">
+	<div class="container nav-center">
+		<a class="navbar-brand">
+			<img src="/android-chrome-512x512.png" width="24" height="24" />
+			Lorenzo Good's Website</a>
+		<div class="split"></div>
+		<nav class="navbar-nav">
+			<a>
+				{{ template "icons/home.svg" . }}
+				<span>Home</span>
+			</a>
+			<a>
+				{{ template "icons/help-circle.svg" . }}
+				<span>About</span>
+			</a>
+			<a>
+				{{ template "icons/archive.svg" . }}
+				<span>Archive</span>
+			</a>
+		</nav>
+	</div>
+</div>
 {{ template "base/foot.tmpl.html" . }}

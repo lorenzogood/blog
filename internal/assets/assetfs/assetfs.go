@@ -131,6 +131,8 @@ func getFiletype(extension string, buf []byte) string {
 		return "application/json"
 	case "ico":
 		return "image/vnd.microsoft.icon"
+	case "svg":
+		return "image/svg+xml"
 	}
 
 	kind, _ := filetype.Match(buf)

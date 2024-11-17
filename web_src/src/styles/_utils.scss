@@ -1,0 +1,12 @@
+@use "_tokens" as *;
+
+// Max W/Padding.
+.container {
+	max-width: $sm-breakpoint;
+	margin: 0 auto;
+}
+
+// Splits two halves in display: flex.
+.split {
+	margin: 0 auto;
+}

@@ -13,10 +13,9 @@ const getEntryPoints = () => {
 		entries[`css/${name}`] = "./" + file;
 	});
 
-	const jsFiles = glob.sync('./src/**/*[!_]*.js');
+	const jsFiles = glob.sync('./src/**/*[^_]*.js');
 	jsFiles.forEach(file => {
 		const name = path.basename(file, '.js');
-		// entries[`js/${name}`] = "./" + file;
 		entries[`js/${name}`] = "./" + file;
 	});
 
