@@ -3,9 +3,10 @@
 # Enable app debug logs.
 DEBUG ?= 1
 WEB_SRC ?= ./web_src
-NEWSLETTER_WEB_ASSET_DIR=./web_src/dist
-NEWSLETTER_DEVELOPMENT=1
-NEWSLETTER_WEB_TEMPLATE_DIR=./templates
+BLOG_WEB_ASSET_DIR=./web_src/dist
+BLOG_DEVELOPMENT=1
+BLOG_WEB_TEMPLATE_DIR=./templates
+BLOG_CONTENT_DIR=./content
 
 export
 

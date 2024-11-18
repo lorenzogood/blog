@@ -8,6 +8,12 @@ import (
 
 func Funcs(a assets.LinkGetter) template.FuncMap {
 	return template.FuncMap{
-		"asset": a.GetLink,
+		"asset":     a.GetLink,
+		"mark_safe": markSafe,
 	}
+}
+
+// Marks a string as html WITHOUT CLEANING IT. XSS!
+func markSafe(s string) template.HTML {
+	return template.HTML(s)
 }

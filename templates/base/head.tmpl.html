@@ -6,11 +6,15 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
+	{{ if .Title }}
+	<title>{{ .Title }} - Lorenzo Good's Blog</title>
+	{{ else }}
 	<title>Lorenzo Good's Blog</title>
+	{{ end }}
 
 	<link rel="stylesheet" href='{{ asset "css/styles.css" }}' type="text/css">
 
-	<meta name="description" content="W Blog" />
+	<meta name="description" content={{ .Description }} />
 </head>
 
 <body>
@@ -22,7 +26,7 @@
 			<nav>
 				<p>
 					<a href="/">Home</a>
-					<a href="/">About</a>
+					<a href="/about">About</a>
 					<a href="/">Projects</a>
 					<a href="/">Archive</a>
 				</p>

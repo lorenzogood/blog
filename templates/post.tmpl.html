@@ -1,0 +1,15 @@
+{{ template "base/head.tmpl.html" . }}
+<main class="prose">
+	<h1 class="post-title">{{ .Title }}</h1>
+	<p class="post-date">
+		Posted at:
+		<time datetime='{{ .Date.Format "2006-01-02T15:04:05Z07:00"}}'>{{ .Date.Format "2006-01-02 15:04:05" }}</time>
+		{{ if .Updated }}
+		- Updated at:
+		<time datetime='{{ .Updated.Format "2006-01-02T15:04:05Z07:00"}}'>{{ .Updated.Format "2006-01-02 15:04:05"
+			}}</time>
+		{{ end }}
+	<p>
+		{{ mark_safe .Content }}
+</main>
+{{ template "base/foot.tmpl.html" . }}

@@ -8,6 +8,7 @@ import (
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
+	"github.com/lorenzogood/blog/blog"
 	"github.com/lorenzogood/blog/internal/assets/assetfs"
 	"github.com/lorenzogood/blog/internal/server"
 	"github.com/lorenzogood/blog/internal/templates"
@@ -23,7 +24,7 @@ type Config struct {
 	Development bool   `conf:"-"`
 }
 
-func Run(ctx context.Context, c Config) error {
+func Run(ctx context.Context, c Config, b *blog.Blog) error {
 	p, err := assetfs.New(public.Public, "assets")
 	if err != nil {
 		return fmt.Errorf("error opening public assets: %w", err)
@@ -59,7 +60,27 @@ func Run(ctx context.Context, c Config) error {
 	r.Method(http.MethodGet, "/*", web.FileServer(p, web.WellKnownCacheHeader))
 	r.Method(http.MethodGet, "/assets/*", web.PermanentFileServer(a))
 	r.Method(http.MethodGet, "/", web.Handler(func(ctx *web.Ctx) error {
-		return ctx.RespondTemplate(t, web.OK, "index.tmpl.html", nil)
+		return ctx.RespondTemplate(t, web.OK, "index.tmpl.html", SinglePageData{
+			Content: b.Index,
+		})
+	}))
+	r.Method(http.MethodGet, "/about", web.Handler(func(ctx *web.Ctx) error {
+		return ctx.RespondTemplate(t, web.OK, "single.tmpl.html", SinglePageData{
+			Title:       "About",
+			Content:     b.About,
+			Description: "About Me",
+		})
+	}))
+	r.Method(http.MethodGet, "/posts/*", web.Handler(func(ctx *web.Ctx) error {
+		slug := ctx.PathValue("*")
+
+		for _, v := range b.Posts {
+			if v.Slug == slug {
+				return ctx.RespondTemplate(t, web.OK, "post.tmpl.html", v)
+			}
+		}
+
+		return ctx.RespondString(web.NotFound, "Post Not Found.")
 	}))
 
 	server.Serve(ctx, c.Addr, r)

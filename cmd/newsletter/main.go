@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/lorenzogood/blog/blog"
 	"github.com/lorenzogood/blog/internal/config"
 	"github.com/lorenzogood/blog/internal/startup"
 	"github.com/lorenzogood/blog/website"
@@ -12,7 +13,8 @@ import (
 )
 
 type cfg struct {
-	Development bool `conf:"default:false"`
+	Development bool   `conf:"default:false"`
+	ContentDir  string `conf:"required"`
 	Web         website.Config
 }
 
@@ -30,10 +32,24 @@ func main() {
 
 func run(ctx context.Context) error {
 	var c cfg
-	config.Parse("NEWSLETTER", &c)
+	config.Parse("BLOG", &c)
 	c.Web.Development = c.Development
 
-	if err := website.Run(ctx, c.Web); err != nil {
+	var b *blog.Blog
+	var err error
+	if c.Development {
+		b, err = blog.NewWatched(c.ContentDir)
+		if err != nil {
+			return err
+		}
+	} else {
+		b, err = blog.New(c.ContentDir)
+		if err != nil {
+			return fmt.Errorf("error building content: %w", err)
+		}
+	}
+
+	if err := website.Run(ctx, c.Web, b); err != nil {
 		return fmt.Errorf("error starting web service: %w", err)
 	}
 

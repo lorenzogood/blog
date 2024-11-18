@@ -82,6 +82,16 @@ button {
 	width: auto !important;
 }
 
+.post-title {
+	font-size: 2.2em;
+	margin-bottom: 0.1em;
+}
+
+.post-date {
+	margin-top: 0;
+	color: var(--light-color);
+}
+
 nav {
 	a {
 		margin-right: 8px;
