@@ -12,6 +12,7 @@ require (
 )
 
 require (
+	github.com/yuin/goldmark v1.7.8 // indirect
 	go.uber.org/multierr v1.10.0 // indirect
 	golang.org/x/sys v0.13.0 // indirect
 )
