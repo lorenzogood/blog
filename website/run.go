@@ -60,9 +60,17 @@ func Run(ctx context.Context, c Config, b *blog.Blog) error {
 	r.Method(http.MethodGet, "/*", web.FileServer(p, web.WellKnownCacheHeader))
 	r.Method(http.MethodGet, "/assets/*", web.PermanentFileServer(a))
 	r.Method(http.MethodGet, "/", web.Handler(func(ctx *web.Ctx) error {
-		return ctx.RespondTemplate(t, web.OK, "index.tmpl.html", SinglePageData{
-			Content: b.Index,
-		})
+		data := struct {
+			SinglePageData
+			Posts []blog.Post
+		}{
+			SinglePageData: SinglePageData{
+				Content: b.Index,
+			},
+			Posts: b.Posts,
+		}
+
+		return ctx.RespondTemplate(t, web.OK, "index.tmpl.html", data)
 	}))
 	r.Method(http.MethodGet, "/about", web.Handler(func(ctx *web.Ctx) error {
 		return ctx.RespondTemplate(t, web.OK, "single.tmpl.html", SinglePageData{
