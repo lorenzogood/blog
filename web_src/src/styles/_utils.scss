@@ -4,9 +4,15 @@
 .container {
 	max-width: $sm-breakpoint;
 	margin: 0 auto;
+	padding: 15px;
 }
 
 // Splits two halves in display: flex.
 .split {
 	margin: 0 auto;
+}
+
+// Hide: 
+.hidden {
+	display: none;
 }
