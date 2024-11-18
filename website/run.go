@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"time"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
@@ -79,12 +80,40 @@ func Run(ctx context.Context, c Config, b *blog.Blog) error {
 			Description: "About Me",
 		})
 	}))
+	r.Method(http.MethodGet, "/archive", web.Handler(func(ctx *web.Ctx) error {
+		data := struct {
+			SinglePageData
+			Posts []blog.Post
+		}{
+			SinglePageData: SinglePageData{
+				Title:       "Posts",
+				Description: "Post Archive",
+			},
+			Posts: b.Posts,
+		}
+
+		return ctx.RespondTemplate(t, web.OK, "archive.tmpl.html", data)
+	}))
 	r.Method(http.MethodGet, "/posts/*", web.Handler(func(ctx *web.Ctx) error {
 		slug := ctx.PathValue("*")
 
 		for _, v := range b.Posts {
 			if v.Slug == slug {
-				return ctx.RespondTemplate(t, web.OK, "post.tmpl.html", v)
+				data := struct {
+					SinglePageData
+					Date    time.Time
+					Updated *time.Time
+				}{
+					SinglePageData: SinglePageData{
+						Title:       v.Title,
+						Description: v.Description,
+						Content:     v.Content,
+						ProseExtra:  true,
+					},
+					Date:    v.Date,
+					Updated: v.Updated,
+				}
+				return ctx.RespondTemplate(t, web.OK, "post.tmpl.html", data)
 			}
 		}
 

@@ -13,9 +13,11 @@
 	{{ end }}
 
 	<link rel="stylesheet" href='{{ asset "css/styles.css" }}' type="text/css">
-	<link rel="stylesheet" href='{{ asset "css/highlight.css" }}' type="text/css">
 
+	{{ if .ProseExtra }}
+	<link rel="stylesheet" href='{{ asset "css/highlight.css" }}' type="text/css">
 	<script src='{{ asset "js/highlight.js" }}' type="module"></script>
+	{{ end }}
 
 	<meta name="description" content={{ .Description }} />
 </head>
@@ -29,7 +31,7 @@
 			<nav>
 				<p>
 					<a href="/">Home</a>
-					<a href="/">Archive</a>
+					<a href="/archive">Archive</a>
 				</p>
 			</nav>
 		</header>

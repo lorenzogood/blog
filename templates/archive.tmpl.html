@@ -1,0 +1,10 @@
+{{ template "base/head.tmpl.html" . }}
+<main class="prose">
+	<h2>All Posts:</h2>
+	<ul>
+		{{ range .Posts }}
+		<li>{{ .Date.Format "2006-01-02" }} - <a href="/posts/{{ .Slug  }}">{{ .Title }}</a></li>
+		{{ end }}
+	</ul>
+</main>
+{{ template "base/foot.tmpl.html" . }}

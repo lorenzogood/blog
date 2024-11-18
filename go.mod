@@ -8,6 +8,7 @@ require (
 	github.com/bep/debounce v1.2.1
 	github.com/fsnotify/fsnotify v1.8.0
 	github.com/go-chi/chi/v5 v5.1.0
+	github.com/gosimple/slug v1.14.0
 	github.com/h2non/filetype v1.1.3
 	github.com/stretchr/testify v1.8.1
 	github.com/yuin/goldmark v1.7.8
@@ -16,7 +17,6 @@ require (
 
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
-	github.com/gosimple/slug v1.14.0 // indirect
 	github.com/gosimple/unidecode v1.0.1 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	go.uber.org/multierr v1.10.0 // indirect
