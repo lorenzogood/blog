@@ -92,6 +92,27 @@ button {
 	color: var(--light-color);
 }
 
+pre {
+	background-color: var(--code-background-color);
+	padding: 1em;
+	border-radius: 3px;
+}
+
+blockquote {
+	border-left: 1px solid #999;
+	color: var(--code-color);
+	padding-left: 20px;
+	font-style: italic;
+}
+
+code {
+	background-color: var(--code-background-color);
+	border-radius: 3px;
+	padding: 2px;
+	font-family: monospace;
+	color: var(--code-color);
+}
+
 nav {
 	a {
 		margin-right: 8px;
