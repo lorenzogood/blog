@@ -16,6 +16,7 @@
 		"webpack-remove-empty-scripts": "^1.0.4"
 	},
 	"dependencies": {
+		"highlight.js": "^11.10.0",
 		"normalize.css": "^8.0.1"
 	}
 }
