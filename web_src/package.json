@@ -17,6 +17,7 @@
 	},
 	"dependencies": {
 		"highlight.js": "^11.10.0",
+		"mathjax": "^3.2.2",
 		"normalize.css": "^8.0.1"
 	}
 }

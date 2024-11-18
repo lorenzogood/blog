@@ -10,6 +10,7 @@ require (
 	github.com/go-chi/chi/v5 v5.1.0
 	github.com/gosimple/slug v1.14.0
 	github.com/h2non/filetype v1.1.3
+	github.com/litao91/goldmark-mathjax v0.0.0-20210217064022-a43cf739a50f
 	github.com/stretchr/testify v1.8.1
 	github.com/yuin/goldmark v1.7.8
 	go.uber.org/zap v1.27.0

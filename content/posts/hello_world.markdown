@@ -82,3 +82,7 @@ def hello_world():
     print("Hello, world!")
 ```
 > Hello world.
+
+## Eigenvalues: 
+
+An eigenvalue of matrix $ A $ is defined as any value $ \lambda $ that satisfies the equation $ A\vec{v} = \lambda\vec{v} $. 

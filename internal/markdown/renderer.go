@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 
+	mathjax "github.com/litao91/goldmark-mathjax"
 	"github.com/yuin/goldmark"
 	"github.com/yuin/goldmark/parser"
 )
@@ -27,6 +28,7 @@ func (r *renderer) RenderMarkdown(markdown []byte) (string, error) {
 
 func NewPostRenderer() Renderer {
 	md := goldmark.New(
+		goldmark.WithExtensions(mathjax.MathJax),
 		goldmark.WithParserOptions(
 			parser.WithAutoHeadingID(),
 		),
