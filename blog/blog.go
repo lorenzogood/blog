@@ -12,9 +12,10 @@ import (
 )
 
 type Blog struct {
-	Index string
-	About string
-	Posts []Post
+	Index     string
+	About     string
+	Posts     []Post
+	Feedposts []Feedpost
 }
 
 // Render a single markdown file, without frontmatter.
@@ -52,6 +53,11 @@ func New(base string) (*Blog, error) {
 	}
 
 	b.Posts, err = ParsePosts(pr, filepath.Join(base, "posts"))
+	if err != nil {
+		return nil, err
+	}
+
+	b.Feedposts, err = ParseFeedposts(pr, filepath.Join(base, "feedposts.toml"))
 	if err != nil {
 		return nil, err
 	}

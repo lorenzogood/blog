@@ -1,0 +1,12 @@
+{{ template "base/head.tmpl.html" . }}
+<main class="prose">
+	<h1>Feed:</h1>
+	{{ range .Posts }}
+	<hr>
+	<h1 id='{{ .Published.Format "2006-01"}}-{{ .Title | slugify }}' class="post-title">{{ .Title }}</h1>
+	<p class="post-date">Published {{ .Published.Format "2006-01-02 15:04:05" }}</p>
+	<article class="feedpost-content">{{ .Content | mark_safe }}</article>
+	<hr>
+	{{ end }}
+</main>
+{{ template "base/foot.tmpl.html" . }}

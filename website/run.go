@@ -119,6 +119,21 @@ func Run(ctx context.Context, c Config, b *blog.Blog) error {
 
 		return ctx.RespondString(web.NotFound, "Post Not Found.")
 	}))
+	r.Method(http.MethodGet, "/feed", web.Handler(func(ctx *web.Ctx) error {
+		data := struct {
+			SinglePageData
+			Posts []blog.Feedpost
+		}{
+			SinglePageData: SinglePageData{
+				Title:       "Feed",
+				Description: "Short Form Content Feed",
+				ProseExtra:  true,
+			},
+			Posts: b.Feedposts,
+		}
+
+		return ctx.RespondTemplate(t, web.OK, "feed.tmpl.html", data)
+	}))
 
 	server.Serve(ctx, c.Addr, r)
 
