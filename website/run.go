@@ -73,13 +73,6 @@ func Run(ctx context.Context, c Config, b *blog.Blog) error {
 
 		return ctx.RespondTemplate(t, web.OK, "index.tmpl.html", data)
 	}))
-	r.Method(http.MethodGet, "/about", web.Handler(func(ctx *web.Ctx) error {
-		return ctx.RespondTemplate(t, web.OK, "single.tmpl.html", SinglePageData{
-			Title:       "About",
-			Content:     b.About,
-			Description: "About Me",
-		})
-	}))
 	r.Method(http.MethodGet, "/archive", web.Handler(func(ctx *web.Ctx) error {
 		data := struct {
 			SinglePageData

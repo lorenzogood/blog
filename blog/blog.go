@@ -13,7 +13,6 @@ import (
 
 type Blog struct {
 	Index     string
-	About     string
 	Posts     []Post
 	Feedposts []Feedpost
 }
@@ -43,11 +42,6 @@ func New(base string) (*Blog, error) {
 	var err error
 
 	b.Index, err = renderFile(pr, filepath.Join(base, "index.md"))
-	if err != nil {
-		return nil, err
-	}
-
-	b.About, err = renderFile(pr, filepath.Join(base, "about.md"))
 	if err != nil {
 		return nil, err
 	}
